@@ -6,7 +6,7 @@ import prettierRecommended from "eslint-plugin-prettier/recommended";
 import globals from "globals";
 
 export default [
-  { ignores: ["**/dist/**"] },
+  { ignores: ["**/dist/**", "**/generated/**"] },
 
   eslint.configs.recommended,
   ...tseslint.configs.recommended,

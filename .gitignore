@@ -7,3 +7,5 @@ build
 
 # pnpm
 .pnpm-store
+database.db
+packages/backend/src/generated/prisma
