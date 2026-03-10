@@ -1,9 +1,10 @@
 import { useForm } from "@mantine/form";
-import { Card, Title, Center } from "@mantine/core";
+import { Card, Center } from "@mantine/core";
 import { zod4Resolver } from "mantine-form-zod-resolver";
 import { shortenUrlSchema } from "@url-shortener/shared/forms/urls";
 import { useShortenUrlMutation } from "../../queries/urls";
 import { UrlShortenerForm } from "./UrlShortenerForm";
+import { ShortUrl } from "./ShortUrl";
 
 export const UrlShortener = () => {
   const form = useForm({
@@ -11,13 +12,27 @@ export const UrlShortener = () => {
     validate: zod4Resolver(shortenUrlSchema),
   });
 
-  const { mutate: shortenUrl, isPending } = useShortenUrlMutation();
+  const {
+    mutate: shortenUrl,
+    isPending: isShortenUrlPending,
+    data: shortUrl,
+    isSuccess: isShortenUrlSuccess,
+    reset: resetShortenUrl,
+  } = useShortenUrlMutation();
+
+  const regenerateShortUrl = () => {
+    resetShortenUrl();
+    form.reset();
+  };
 
   return (
     <Center h="100vh">
       <Card withBorder w={480}>
-        <Title order={2}>Créer un nouveau lien</Title>
-        <UrlShortenerForm form={form} onSubmit={shortenUrl} isPending={isPending} />
+        {isShortenUrlSuccess ? (
+          <ShortUrl shortUrl={shortUrl.data} regenerateShortUrl={regenerateShortUrl} />
+        ) : (
+          <UrlShortenerForm form={form} onSubmit={shortenUrl} isPending={isShortenUrlPending} />
+        )}
       </Card>
     </Center>
   );
