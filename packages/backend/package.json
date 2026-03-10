@@ -15,7 +15,8 @@
     "@url-shortener/shared": "workspace:*",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "nanoid": "^5.1.6"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",

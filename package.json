@@ -21,5 +21,8 @@
     "prettier-plugin-packagejson": "^3.0.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.57.0"
+  },
+  "dependencies": {
+    "zod": "^4.3.6"
   }
 }
