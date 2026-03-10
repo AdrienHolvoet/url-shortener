@@ -14,5 +14,7 @@ router.get("/:slug", async (req, res: Response) => {
     return;
   }
 
+  prisma.click.create({ data: { urlId: url.id } }).then(() => {});
+
   res.redirect(302, url.originalUrl);
 });
