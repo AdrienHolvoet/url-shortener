@@ -2,10 +2,12 @@ import { prisma } from "../lib/prisma";
 import { IRouter, Request, Response, Router } from "express";
 import { router as urlsRouter } from "./urls";
 import { rateLimitMiddleware } from "../middlewares/rateLimit";
+import { router as adsRouter } from "./ads";
 
 export const router: IRouter = Router();
 
 router.use("/urls", rateLimitMiddleware(), urlsRouter);
+router.use("/ads", rateLimitMiddleware(), adsRouter);
 
 router.get(
   "/:slug",

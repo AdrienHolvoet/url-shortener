@@ -8,5 +8,6 @@ export const shortenUrl = async (originalUrl: string) => {
   const url = await prisma.url.create({
     data: { originalUrl, slug },
   });
+
   return `${process.env.BASE_URL}/${url.slug}`;
 };
